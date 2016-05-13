@@ -1,0 +1,9 @@
+<h1>Nina's Toybox</h1>
+
+<% @toys.each do | toy | %>
+<h2><a href='/toy'<%= toy.product %></h2>
+<h3><%= toy.cost %></h3>
+<h3><%= toy.features %></h3>
+<h3><%= toy.quantity_in_stock %></h3>
+
+<% end %>
