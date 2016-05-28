@@ -1,5 +1,39 @@
 <h1> Nina's Toybox</h1>
 
 <h2><%= @toy.product %></h2>
+<p><%= @toy.sale_message %></p>
+
 <h3><%= @toy.cost %></h3>
+<p><%= @toy.tax %></p>
+<p><%= @toy.total %></p>
+
+<h6>Amount in stock:<%= @toy.quantity_in_stock %></h6>
+<p><%= @toy.in_stock %></p>
+
+<p><%= @toy.supplier.name %></p>
+
+<h5>Category</h5> 
+
+
+<h4>Features</h4>
+
 <h3><%= @toy.features %></h3>
+
+<h5><%= link_to "Delete", "/toys/#{@toy.id}", method: :delete %></h5> 
+<h5><%= link_to 'Home', "/" %></h5>
+
+
+<h2>Order now!</h2>
+<%= form_tag '/carted_products', method: :post do %>
+
+<div>
+  <%= label_tag :quantity %>
+  <%= text_field_tag :quantity %>
+</div>ß
+<div>
+  <%= hidden_field_tag :product_id, @toy.id %>
+</div>
+
+<%= submit_tag 'Add to Cart', class: "btn btn-default" %>
+
+<% end %>

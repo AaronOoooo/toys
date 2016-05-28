@@ -1,9 +1,17 @@
 <h1>Nina's Toybox</h1>
 
+<div class="row">
 <% @toys.each do | toy | %>
-<h2><a href='/toy'<%= toy.product %></h2>
-<h3><%= toy.cost %></h3>
+
+<div class ="col-md-4 thumbnail">
+<h2>Product:<a href="/toys/<%= toy.id %>" ><%= toy.product %></a> </h2>
+<h3>Price: $<%= toy.cost %></h3>
 <h3><%= toy.features %></h3>
 <h3><%= toy.quantity_in_stock %></h3>
+<a href="/toys/<%= toy.id %>"> <img src="<%= toy.image %>" alt="<%= toy.product %>"</a>
 
+<br>
+</div>
+
+</div>
 <% end %>

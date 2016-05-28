@@ -1,0 +1,22 @@
+body {
+  font-family: Tahoma,Verdana,Segoe,sans-serif;
+  background-image: url("squared_metal.png");
+}
+
+h1 {
+  border-bottom: solid #0aa 1px;
+}
+
+a {
+  color: black;
+
+}
+
+a:hover {
+  text-decoration: none;
+  color: #3ff;
+}
+
+.thumbnail {
+  height: 550px;
+}
