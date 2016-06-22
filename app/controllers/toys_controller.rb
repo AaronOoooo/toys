@@ -1,6 +1,11 @@
 class ToysController < ApplicationController
 
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+
   def index # REST
+
+    @test_token = ENV['test_api_token']
+    @test_secret = ENV['test_api_secret']
     @toys = Toy.all
     sort_attribute = params[:sort]
     sort_order = params[:sort_order]
@@ -32,39 +37,58 @@ class ToysController < ApplicationController
 
   end
 
+  def edit 
+    @toy = Toy.find(params[:id])
+  end
+
   def create
     @toy = Toy.create(
       product: params[:product],
       cost: params[:cost],
       features: params[:features],
       quantity_in_stock: params[:quantity_in_stock],
-      image: params[:image]
+      image: params[:imagyy77e]
 
       )
+
     flash[:success] = "Toy Created"
     redirect_to "/toys/#{@toy.id}"
+
   end
 
   def show
     @toy = Toy.find(params[:id])
   end
 
-  def one
-    @toy = Toy.first
-  end
+  def update
+    @toy = Toy.find(params[:id])
+    
+    @toy.update(
+      product: params[:product],
+      cost: params[:cost],
+      features: params[:features],
+      quantity_in_stock: params[:quantity_in_stock]
+      )
 
-  def all
-    @toys = Toy.all
+      flash[:success] = "Toy Updated"
+      flash[:danger] = "I ate a Skttle"
+      redirect_to "/toys/#{@toy.id}"
   end
 
   def destroy
     @toy = Toy.find(params[:id])
     @toy.destroy
 
-    flash[:success] = "I ate a Skttle"
-
     flash[:success] = "Toy has been deleted from store"
     redirect_to "/"
   end 
+
+  private
+  
+  def authenticate_admin!
+    unless user_signed_in? && current_user.admin
+      redirect_to '/'
+    end
+  end
   
 end

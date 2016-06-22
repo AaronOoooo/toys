@@ -1,0 +1,32 @@
+<h1>Nina's New Toys</h1>
+
+<%= form_tag "/toys/#{@toy.id}", method: :patch do %>
+
+<div>
+  <%= label_tag :product %>
+  <%= text_field_tag :product, @toy.product %>
+</div>
+
+<div>
+  <%= label_tag :cost %>
+  <%= text_field_tag :cost, @toy.cost %>
+</div>
+
+<div>
+  <%= label_tag :features %>
+  <%= text_field_tag :features, @toy.features %>
+</div>
+
+<div>
+  <%= label_tag :quantity_in_stock %>
+  <%= text_field_tag :quantity_in_stock, @toy.quantity_in_stock %>
+</div>
+
+<div>
+  <%= label_tag :image %>
+  <%= text_field_tag :image %>
+</div>
+
+
+<%= submit_tag 'Update Toy' %>
+<% end %>
